@@ -6,6 +6,14 @@ This repository demonstrates a setup for managing multiple isolated services in 
 
 The idea is to keep a single `node_modules` folder at the root level to be shared by all services, while allowing each service to have its own isolated `package.json` and dependencies.
 
+## Before You Start
+
+type inside the root folder:
+
+```bash
+npm install
+```
+
 ### Adding a New Service
 
 To add a new service, follow these steps:
@@ -13,18 +21,20 @@ To add a new service, follow these steps:
 1.  Navigate to the root directory and create a new service workspace:
 
 ```
-npm init -w ./service_C
+npm init -w ./service_c
 ```
 
-follow the prompts in the terminal.
+follow the prompts in the terminal. This will create a new "workspace" propterie in the root `package.json` file.
 
 2.  Install dependencies for the newly created service workspace:
 
 ```
-npm install -w service_C express
+npm install -w service_c express
 ```
 
-3.  Each service folder can have its own `package.json` file with its own set of dependencies.
+3. The -w flag stand for "worksapce" and tells npm to install the dependencies in the given workspace directory, in that case service_c.
+
+4. Each service folder can have its own `package.json` file with its own set of dependencies.
 
 ### Building and Starting Docker Images
 
