@@ -1,6 +1,7 @@
 # this docker compose file will runn each Dockerfile from each service on a diffrerent container and port
-# to run this file use the command: docker-compose up --build
+# to run this file use the command: docker-compose up -d --build
 # to stop the containers use: docker-compose down
+# to delete the images use: docker rmi -f $(docker images -a -q)
 
 version: '3'
 services:
