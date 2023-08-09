@@ -24,7 +24,7 @@ To add a new service, follow these steps:
 npm init -w ./service_c
 ```
 
-follow the prompts in the terminal. This will create a new "workspace" propterie in the root `package.json` file.
+follow the prompts in the terminal. This will create a new "workspace" property in the root `package.json` file.
 
 2.  Install dependencies for the newly created service workspace:
 
