@@ -1,26 +1,47 @@
-only one node_modules inside the root!
+# Monorepo Dockerized Node.js Services
 
-the idea is that each service is isolated but only one node_modules folder is used for all services.
+This repository demonstrates a setup for managing multiple isolated services in a monorepo while sharing a single `node_modules` folder. Each service is contained within its own directory, and the root `package.json` file utilizes the "workspaces" feature to manage dependencies.
 
-The root package.json will have the property "workspaces" which will point to the folders of the services.
+## How It Works
 
-You can try this with the following steps:
+The idea is to keep a single `node_modules` folder at the root level to be shared by all services, while allowing each service to have its own isolated `package.json` and dependencies.
 
-try inside the root:
+### Adding a New Service
 
-        npm init -w ./service_C  //NOTE: -w stands for "workspace", dont forgett to enter everything asked in the terminal,
+To add a new service, follow these steps:
 
-        //try the follow command to add new dependencies for workspace "service_C"
+1.  Navigate to the root directory and create a new service workspace:
 
-        npm install -w service_C express // this will install the dependencies for the workspace "service_C"
+```
+npm init -w ./service_C
+```
 
-that way all node_modules will stay inside the root folder and you have only one node_modules folder for all your services.
-BUT each package.json inside each service folder will have its own dependencies, wich is nicer to work with docker
+follow the prompts in the terminal.
 
-Start all images:
+2.  Install dependencies for the newly created service workspace:
 
-        instructions also inside the "docker-compose.yml" file, but i created a script for it for easier use inside package.json:
+```
+npm install -w service_C express
+```
 
-                npm run build_and_start_all_dockerimages
+3.  Each service folder can have its own `package.json` file with its own set of dependencies.
 
-                npm run stop_all_dockerimages
+### Building and Starting Docker Images
+
+A Docker Compose configuration is provided (`docker-compose.yml`) to build and start the Docker images for all services.
+
+To build and start all Docker images, you can use the following command:
+
+```bash
+npm run build_and_start_all_dockerimages
+```
+
+OR you have a look into the docker-compose.yml file.
+
+# Stopping Docker Images
+
+To stop all running Docker images, you can use the following command:
+
+```bash
+npm run stop_all_dockerimages
+```
