@@ -1,5 +1,6 @@
 # this docker compose file will runn each Dockerfile from each service on a diffrerent container and port
-# to run this file use the command: docker-compose up -d --build
+# to run this file use the command: docker-compose up -d --build, the --build flag tells docker to rebuild Docker image based on the "build" property path down below.The -d tag avoids your
+    #terminal from beeing blocked after the docker containers start running.
 # to stop the containers use: docker-compose down
 # to delete the images use: docker rmi -f $(docker images -a -q)
 
