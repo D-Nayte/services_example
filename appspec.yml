@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/app
+    overwrite: true
+hooks:
+  ApplicationStart:
+    - command: npm run build_and_start_all_dockerimages
+      timeout: 300
+      runas: root
+
+  ApplicationStop:
+    - command: npm run stop_all_dockerimages
+      timeout: 300
+      runas: root
+
+file_exists_behavior: OVERWRITE
