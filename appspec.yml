@@ -5,6 +5,11 @@ files:
     destination: /var/app
     overwrite: true
 hooks:
+  # ApplicationStop:
+  #   - location: scripts/stop.sh
+  #     timeout: 60
+  #     runas: root
+
   BeforeInstall:
     - location: scripts/delete.sh
       timeout: 60
@@ -12,11 +17,6 @@ hooks:
 
   ApplicationStart:
     - location: scripts/start.sh
-      timeout: 60
-      runas: root
-
-  ApplicationStop:
-    - location: scripts/stop.sh
       timeout: 60
       runas: root
 
