@@ -3,6 +3,7 @@
 const express = require("express");
 const corse = require("cors");
 const { serviceMap } = require("./portMapper");
+const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
@@ -15,8 +16,10 @@ app.get("/", (req, res) => res.send(JSON.stringify(serviceMap)));
 // create a route for each service and forward the request to the appropriate container
 serviceMap.forEach((service) => {
   app.get(`/${service.name}`, (req, res) => {
-    console.log(`http://localhost:${service.port}`);
-    res.redirect(`http://localhost:${service.port}`);
+    // reuest the service and send back the response
+    axios.get(`http://localhost:${service.port}`).then((response) => {
+      res.send(response.data);
+    });
   });
 });
 
