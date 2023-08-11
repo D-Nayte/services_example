@@ -9,15 +9,14 @@ services:
   service1: #this is the name of the service
     image: dockertest/${SERVICE_NAME_A} #this is the name of the image created by the Dockerfile
     build: ./service-a #this is the name of the folder where the Dockerfile is to rebuild it automatically to keep it updated
-    ports:
-      # get the port exportet from ./config/index.js
-      - ${PORT_SERVICE_NAME_A}:3000
+    env_file: #this is the file where the environment variables are stored
+      - ./.env
 
   service2: #this is the name of the service
     image: dockertest/${SERVICE_NAME_B} #this is the name of the image created by the Dockerfile
     build: ./service-b #this is the name of the folder where the Dockerfile is to rebuild it automatically to keep it updated
-    ports:
-      - ${PORT_SERVICE_NAME_B}:3000
+    env_file: #this is the file where the environment variables are stored
+      - ./.env
 
   router: #this is the name of the service
     image: dockertest/router #this is the name of the image created by the Dockerfile
@@ -27,3 +26,6 @@ services:
       - 5555:5555
     env_file: #this is the file where the environment variables are stored
       - ./.env
+    links:
+      - service1:${SERVICE_NAME_A}
+      - service2:${SERVICE_NAME_B}

@@ -1,9 +1,13 @@
 //create express server with one route
 const express = require("express");
-const app = express();
+const corse = require("cors");
 require("dotenv").config();
 
-const port = process.env.DEFAULT_PORT || 3000;
+const app = express();
+
+app.use(corse());
+
+const port = process.env.PORT_SERVICE_NAME_A;
 
 app.get("/", (req, res) => res.send("Hello from service A!"));
 

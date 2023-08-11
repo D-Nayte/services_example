@@ -15,11 +15,18 @@ app.get("/", (req, res) => res.send(JSON.stringify(serviceMap)));
 
 // create a route for each service and forward the request to the appropriate container
 serviceMap.forEach((service) => {
-  app.get(`/${service.name}`, (req, res) => {
-    // reuest the service and send back the response
-    axios.get(`http://localhost:${service.port}`).then((response) => {
-      res.send(response.data);
-    });
+  app.get(`/${service.name}`, async (req, res) => {
+    try {
+      const response = await axios.get(
+        `http://${service.name}:${service.port}`
+      );
+      res.writeHead(response.status, response.headers);
+      res.end(response.data);
+    } catch (error) {
+      console.error(error);
+      res.statusCode = 500;
+      res.end("Internal Server Error");
+    }
   });
 });
 
