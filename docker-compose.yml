@@ -1,20 +1,28 @@
 # this docker compose file will runn each Dockerfile from each service on a diffrerent container and port
 # to run this file use the command: docker-compose up -d --build, the --build flag tells docker to rebuild Docker image based on the "build" property path down below.The -d tag avoids your
-    #terminal from beeing blocked after the docker containers start running.
+#terminal from beeing blocked after the docker containers start running.
 # to stop the containers use: docker-compose down
 # to delete the images use: docker rmi -f $(docker images -a -q)
 
-version: '3'
+version: "3"
 services:
   service1: #this is the name of the service
-    image: dockertest/service_a #this is the name of the image created by the Dockerfile
-    build: ./service_a #this is the name of the folder where the Dockerfile is to rebuild it automatically to keep it updated
+    image: dockertest/${SERVICE_NAME_A} #this is the name of the image created by the Dockerfile
+    build: ./service-a #this is the name of the folder where the Dockerfile is to rebuild it automatically to keep it updated
     ports:
-      - '8081:3000'
-    restart: always
+      # get the port exportet from ./config/index.js
+      - ${PORT_SERVICE_NAME_A}:3000
+
   service2: #this is the name of the service
-    image: dockertest/service_b #this is the name of the image created by the Dockerfile
-    build: ./service_b #this is the name of the folder where the Dockerfile is to rebuild it automatically to keep it updated
+    image: dockertest/${SERVICE_NAME_B} #this is the name of the image created by the Dockerfile
+    build: ./service-b #this is the name of the folder where the Dockerfile is to rebuild it automatically to keep it updated
     ports:
-      - '8082:3000'
-    restart: always
+      - ${PORT_SERVICE_NAME_B}:3000
+
+  router: #this is the name of the service
+    image: dockertest/router #this is the name of the image created by the Dockerfile
+    build: ./router #this is the name of the folder where the Dockerfile is to rebuild it automatically to keep it updated
+    ports:
+      - 5555:5555
+    env_file: #this is the file where the environment variables are stored
+      - ./.env

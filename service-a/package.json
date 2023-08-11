@@ -1,0 +1,24 @@
+{
+  "name": "service_a",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Andy Schunke <schunke.andy@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/D-Nayte/services_example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/D-Nayte/services_example/issues"
+  },
+  "homepage": "https://github.com/D-Nayte/services_example#readme",
+  "description": ""
+}

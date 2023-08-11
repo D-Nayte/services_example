@@ -1,12 +1,7 @@
 #!bin/bash
 
-# start docker compose from home/ec2-user
+# head into the app directory
 cd /var/app
-
-# echo the current directory
-echo "Current directory: $(pwd)"
-# echo with ls
-echo "Current directory: $(ls)"
 
 # start docker compose
 docker-compose up -d --build
