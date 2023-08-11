@@ -1,7 +1,7 @@
 #!bin/bash
 
 # start docker compose from home/ec2-user
-cd ..
+cd /var/app
 
 # echo the current directory
 echo "Current directory: $(pwd)"
