@@ -23,6 +23,7 @@ services:
     image: dockertest/router #this is the name of the image created by the Dockerfile
     build: ./router #this is the name of the folder where the Dockerfile is to rebuild it automatically to keep it updated
     ports:
+      - 80:5555
       - 5555:5555
     env_file: #this is the file where the environment variables are stored
       - ./.env
